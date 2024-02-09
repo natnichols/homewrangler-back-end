@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const profileSchema = new Schema({
   name: String,
   photo: String,
-  pantryItems: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
+  pantryInventory: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
 },{
   timestamps: true,
 })
