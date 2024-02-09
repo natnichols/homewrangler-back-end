@@ -6,7 +6,9 @@ export async function create(req, res) {
     req.body.owner = req.user.profile
     const pantryItem = await PantryItem.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
-      req.user.profile
+      req.user.profile,
+      { $push: { pantryItems: pantryItem } },
+      { new: true }
     )
     pantryItem.owner = profile
     res.json(pantryItem)
