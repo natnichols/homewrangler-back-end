@@ -29,3 +29,14 @@ export async function index(req, res) {
     res.status(500).json(`🚨`, err)
   }
 }
+
+export async function show(req, res) {
+  try {
+    const pantryItem = await PantryItem.findById(req.params.pantryItemId)
+      .populate('owner')
+    res.json(pantryItem)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
