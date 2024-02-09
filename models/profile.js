@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 const profileSchema = new Schema({
   name: String,
-  photo: String
+  photo: String,
+  pantryItems: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
 },{
   timestamps: true,
 })
