@@ -11,12 +11,12 @@ const router = Router()
 router.use(decodeUserFromToken)
 // GET to localhost:3001/api/pantryItems
 router.get('/', checkAuth, pantryItemsCtrl.index)
-// GET to localhost:3001/api/pantryItems/:pantryItemId (show)
+// GET to localhost:3001/api/pantryItems/:pantryItemId
 router.get('/:pantryItemId', checkAuth, pantryItemsCtrl.show)
 // POST to localhost:3001/api/pantryItems
 router.post('/', checkAuth, pantryItemsCtrl.create)
-// PUT to localhost:3001/api/pantryItems/:pantryItemId (update)
-
+// PUT to localhost:3001/api/pantryItems/:pantryItemId
+router.put('/:pantryItemId', checkAuth, pantryItemsCtrl.update)
 // DELETE to localhost:3001/api/pantryItems/:pantryItemId (delete)
 
 
