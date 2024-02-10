@@ -19,5 +19,13 @@ export async function create(req, res) {
 }
 
 export async function index(req, res) {
-  
+  try {
+    const repairs = await Repair.find({})
+      .populate('owner')
+      .sort({ createdAt: 'desc' })
+    res.json(repairs)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
 }
