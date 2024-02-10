@@ -33,7 +33,7 @@ export async function index(req, res) {
 export async function show(req, res) {
   try {
     const repair = await Repair.findById(req.params.repairId)
-      .populate('owner')
+      .populate(['owner', 'repairTasks.owner'])
     res.json(repair)
   } catch (err) {
     console.log(`🚨`, err)
