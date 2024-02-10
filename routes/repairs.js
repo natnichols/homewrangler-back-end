@@ -18,6 +18,7 @@ router.post('/', checkAuth, repairsCtrl.create)
 // PUT to localhost:3001/api/repairs/:repairId
 router.put('/:repairId', checkAuth, repairsCtrl.update)
 // DELETE to localhost:3001/api/repairs/:repairId
+router.delete('/:repairId', checkAuth, repairsCtrl.delete)
 
 
 export { router }
