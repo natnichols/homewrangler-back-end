@@ -29,3 +29,14 @@ export async function index(req, res) {
     res.status(500).json(`🚨`, err)
   }
 }
+
+export async function show(req, res) {
+  try {
+    const repair = await Repair.findById(req.params.repairId)
+      .populate('owner')
+    res.json(repair)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}

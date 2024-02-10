@@ -12,7 +12,7 @@ router.use(decodeUserFromToken)
 // GET to localhost:3001/api/repairs
 router.get('/', checkAuth, repairsCtrl.index)
 // GET to localhost:3001/api/repairs/:repairId
-
+router.get('/:repairId', checkAuth, repairsCtrl.show)
 // POST to localhost:3001/api/repairs
 router.post('/', checkAuth, repairsCtrl.create)
 // PUT to localhost:3001/api/repairs/:repairId
