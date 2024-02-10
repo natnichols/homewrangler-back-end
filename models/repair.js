@@ -3,7 +3,19 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const repairTaskSchema = new Schema({
-
+  task: {
+    type: Number,
+    required: true
+  },
+  done: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile'
+  },
 }, {
   timestamps: true
 })
