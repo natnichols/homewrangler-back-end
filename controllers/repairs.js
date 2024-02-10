@@ -22,7 +22,7 @@ export async function index(req, res) {
   try {
     const repairs = await Repair.find({})
       .populate('owner')
-      .sort({ createdAt: 'desc' })
+      .sort({ priority: 'desc' })
     res.json(repairs)
   } catch (err) {
     console.log(`🚨`, err)
