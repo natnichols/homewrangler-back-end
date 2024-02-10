@@ -54,3 +54,25 @@ export async function update(req, res) {
     res.status(500).json(`🚨`, err)
   }
 }
+
+async function deletePantryItem(req, res) {
+  try {
+    const pantryItem = await PantryItem.findById(req.params.pantryItemId)
+    if (pantryItem.owner.equals(req.user.profile)) {
+      await PantryItem.findByIdAndDelete(req.params.pantryItemId)
+      const profile = await Profile.findById(req.user.profile)
+      profile.pantryInventory.remove({ _id: req.params.pantryItemId })
+      await profile.save()
+      res.json(pantryItem)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
+
+export {
+  deletePantryItem as delete
+}

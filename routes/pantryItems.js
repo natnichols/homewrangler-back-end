@@ -17,8 +17,8 @@ router.get('/:pantryItemId', checkAuth, pantryItemsCtrl.show)
 router.post('/', checkAuth, pantryItemsCtrl.create)
 // PUT to localhost:3001/api/pantryItems/:pantryItemId
 router.put('/:pantryItemId', checkAuth, pantryItemsCtrl.update)
-// DELETE to localhost:3001/api/pantryItems/:pantryItemId (delete)
-
+// DELETE to localhost:3001/api/pantryItems/:pantryItemId
+router.delete('/:pantryItemId', checkAuth, pantryItemsCtrl.delete)
 
 export {
   router
