@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import * as repairsCtrl from '../controllers/repairs.js'
-import { decodeUserFromToken, checkAuth } from '../middleware/auth'
+import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 const router = Router()
 
