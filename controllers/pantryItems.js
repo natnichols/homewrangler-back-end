@@ -40,3 +40,17 @@ export async function show(req, res) {
     res.status(500).json(`🚨`, err)
   }
 }
+
+export async function update(req, res) {
+  try {
+    const pantryItem = await PantryItem.findByIdAndUpdate(
+      req.params.pantryItemId,
+      req.body,
+      { new: true }
+    ).populate('owner')
+    res.json(pantryItem)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
