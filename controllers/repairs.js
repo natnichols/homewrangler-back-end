@@ -17,3 +17,7 @@ export async function create(req, res) {
     res.status(500).json(`🚨`, err)
   }
 }
+
+export async function index(req, res) {
+  
+}

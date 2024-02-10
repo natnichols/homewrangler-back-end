@@ -10,7 +10,7 @@ const router = Router()
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
 // GET to localhost:3001/api/repairs
-
+router.get('/', checkAuth, repairsCtrl.index)
 // GET to localhost:3001/api/repairs/:repairId
 
 // POST to localhost:3001/api/repairs
