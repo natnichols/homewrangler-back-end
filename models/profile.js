@@ -6,6 +6,8 @@ const profileSchema = new Schema({
   name: String,
   photo: String,
   pantryInventory: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
+  shoppingList: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
+  shoppingCart: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
 },{
   timestamps: true,
 })
