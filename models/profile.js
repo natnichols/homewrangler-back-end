@@ -9,6 +9,9 @@ const profileSchema = new Schema({
   shoppingList: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
   // shoppingCart: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
   repairs: [{ type: Schema.Types.ObjectId, ref: 'Repair' }],
+  // --------- icebox ---------
+  // budgets: [{ type: Schema.Types.ObjectId, ref: 'Budget' }], /* <--- for when we add categories to Budget model (also icebox) */
+  // --------- icebox ---------
 },{
   timestamps: true,
 })
