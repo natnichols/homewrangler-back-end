@@ -7,7 +7,7 @@ const budgetSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Profile',
   },
-  price: {
+  amount: {
     type: Number,
     required: true
   },
