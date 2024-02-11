@@ -10,7 +10,7 @@ const router = Router()
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
 // GET to localhost:3001/api/budgets
-
+router.get('/', checkAuth, budgetsCtrl.index)
 // GET to localhost:3001/api/budgets/:budgetId
 
 // POST to localhost:3001/api/budgets

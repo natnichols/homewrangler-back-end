@@ -17,3 +17,15 @@ export async function create(req, res) {
     res.status(500).json(`🚨`, err)
   }
 }
+
+export async function index(req, res) {
+  try {
+    const budgets = await Budget.find({})
+      .populate('owner')
+      .sort({ createdAt: 'desc' })
+    res.json(budgets)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
