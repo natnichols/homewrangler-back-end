@@ -25,10 +25,6 @@ const repairSchema = new Schema({
     type: String,
     required: true
   },
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: 'Profile'
-  },
   priority: {
     type: String,
     required: true,
@@ -38,6 +34,10 @@ const repairSchema = new Schema({
     type: String,
   },
   repairTasks: [repairTaskSchema],
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile'
+  },
   // --------- icebox ---------
   // supplies: {
   //   type: Schema.Types.ObjectId,
