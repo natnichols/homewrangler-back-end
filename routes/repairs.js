@@ -20,7 +20,7 @@ router.post('/:repairId/repairTasks', checkAuth, repairsCtrl.createRepairTask)
 // PUT to localhost:3001/api/repairs/:repairId
 router.put('/:repairId', checkAuth, repairsCtrl.update)
 // PUT to localhost:3001/api/repairs/:repairId/repairTasks/:repairTaskId
-
+router.put('/:repairId/repairTasks/:repairTaskId', checkAuth, repairsCtrl.updateRepairTask)
 // DELETE to localhost:3001/api/repairs/:repairId
 router.delete('/:repairId', checkAuth, repairsCtrl.delete)
 // DELETE to localhost:3001/api/repairs/:repairId/repairTasks/:repairTaskId

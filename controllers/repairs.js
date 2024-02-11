@@ -95,6 +95,19 @@ export async function createRepairTask(req, res) {
   }
 }
 
+export async function updateRepairTask(req, res) {
+  try {
+    const repair = await Repair.findById(req.params.repairId)
+    const repairTask = repair.repairTasks.id(req.params.repairTaskId)
+    repairTask.task = req.body.task
+    await repair.save()
+    res.json(repair)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
+
 export {
   deleteRepair as delete
 }

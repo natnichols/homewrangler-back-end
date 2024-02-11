@@ -9,7 +9,7 @@ const repairTaskSchema = new Schema({
   },
   done: {
     type: Boolean,
-    default: false,
+    // default: false,
     // required: true
   },
   owner: {
