@@ -41,6 +41,20 @@ export async function show(req, res) {
   }
 }
 
+export async function update(req, res) {
+  try {
+    const budget = await Budget.findByIdAndUpdate(
+      req.params.budgetId,
+      req.body,
+      { new: true }
+    ).populate('owner')
+    res.json(budget)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
+
 export {
 
 }
