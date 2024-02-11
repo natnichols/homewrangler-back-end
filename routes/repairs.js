@@ -24,6 +24,6 @@ router.put('/:repairId/repairTasks/:repairTaskId', checkAuth, repairsCtrl.update
 // DELETE to localhost:3001/api/repairs/:repairId
 router.delete('/:repairId', checkAuth, repairsCtrl.delete)
 // DELETE to localhost:3001/api/repairs/:repairId/repairTasks/:repairTaskId
-
+router.delete('/:repairId/repairTasks/:repairTaskId', checkAuth, repairsCtrl.deleteRepairTask)
 
 export { router }
