@@ -29,3 +29,18 @@ export async function index(req, res) {
     res.status(500).json(`🚨`, err)
   }
 }
+
+export async function show(req, res) {
+  try {
+    const budget = await Budget.findById(req.params.budgetId)
+      .populate('owner')
+    res.json(budget)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
+
+export {
+
+}
