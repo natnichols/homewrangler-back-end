@@ -59,6 +59,7 @@ async function deleteBudget(req, res) {
   try {
     const budget = await Budget.findByIdAndDelete(req.params.budgetId)
     res.json(budget)
+    // --- below code throws error - mostly same as above but wanted to add barrier to keep anyone but the owner of the budget from being able to delete it. Also includes commented out line for an icebox feature ---
     // const budget = await Budget.findById(req.params.budgetId)
     // if (budget.owner.equals(req.user.profile)) {
     //   await Budget.findByIdAndDelete(req.params.budgetId)
