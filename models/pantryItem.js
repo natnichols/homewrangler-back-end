@@ -9,20 +9,20 @@ const pantryItemSchema = new Schema({
   },
   amount: {
     type: String,
-    required: true
+    // required: true
   },
   category: {
     type: String,
-    required: true,
+    // required: true,
     enum: ['Produce', 'Grocery', 'Fridge', 'Freezer', 'Health & Beauty', 'Household', 'Repairs'],
   },
   price: {
     type: Number,
-    required: true
+    // required: true
   },
   expires: {
     type: Boolean,
-    required: true
+    // required: true
   },
   owner: {
     type: Schema.Types.ObjectId,

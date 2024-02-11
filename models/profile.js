@@ -7,7 +7,7 @@ const profileSchema = new Schema({
   photo: String,
   pantryInventory: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
   shoppingList: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
-  shoppingCart: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
+  // shoppingCart: [{ type: Schema.Types.ObjectId, ref: 'PantryItem' }],
   repairs: [{ type: Schema.Types.ObjectId, ref: 'Repair' }],
 },{
   timestamps: true,
