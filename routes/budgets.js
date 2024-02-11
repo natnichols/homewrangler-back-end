@@ -18,6 +18,6 @@ router.post('/', checkAuth, budgetsCtrl.create)
 // PUT to localhost:3001/api/budgets/:budgetId
 router.put('/:budgetId', checkAuth, budgetsCtrl.update)
 // DELETE to localhost:3001/api/budgets/:budgetId
-
+router.delete('/:budgetId', checkAuth, budgetsCtrl.delete)
 
 export { router }

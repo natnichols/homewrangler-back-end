@@ -55,6 +55,26 @@ export async function update(req, res) {
   }
 }
 
-export {
+async function deleteBudget(req, res) {
+  try {
+    const budget = await Budget.findByIdAndDelete(req.params.budgetId)
+    res.json(budget)
+    // const budget = await Budget.findById(req.params.budgetId)
+    // if (budget.owner.equals(req.user.profile)) {
+    //   await Budget.findByIdAndDelete(req.params.budgetId)
+    //   const profile = await Profile.findById(req.user.profile)
+    //   // profile.budgets.remove({ _id: req.params.budgetId }) /* <--- icebox */
+    //   await profile.save()
+    //   res.json(budget)
+    // } else {
+    //   throw new Error('🛑🤠 Not authorized 😡❌')
+    // }
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
 
+export {
+  deleteBudget as delete
 }
