@@ -4,13 +4,13 @@ const Schema = mongoose.Schema
 
 const repairTaskSchema = new Schema({
   task: {
-    type: Number,
+    type: String,
     required: true
   },
   done: {
     type: Boolean,
     default: false,
-    required: true
+    // required: true
   },
   owner: {
     type: Schema.Types.ObjectId,

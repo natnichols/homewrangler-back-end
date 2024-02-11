@@ -79,6 +79,22 @@ async function deleteRepair(req, res) {
   }
 }
 
+export async function createRepairTask(req, res) {
+  try {
+    req.body.owner = req.user.profile
+    const repair = await Repair.findById(req.params.repairId)
+    repair.repairTasks.push(req.body)
+    await repair.save()
+    const newRepairTask = repair.repairTasks[repair.repairTasks.length - 1]
+    const profile = await Profile.findById(req.user.profile)
+    newRepairTask.owner = profile
+    res.json(newRepairTask)
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
+
 export {
   deleteRepair as delete
 }

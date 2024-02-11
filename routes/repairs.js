@@ -16,7 +16,7 @@ router.get('/:repairId', checkAuth, repairsCtrl.show)
 // POST to localhost:3001/api/repairs
 router.post('/', checkAuth, repairsCtrl.create)
 // POST to localhost:3001/api/repairs/:repairId/repairTasks
-
+router.post('/:repairId/repairTasks', checkAuth, repairsCtrl.createRepairTask)
 // PUT to localhost:3001/api/repairs/:repairId
 router.put('/:repairId', checkAuth, repairsCtrl.update)
 // PUT to localhost:3001/api/repairs/:repairId/repairTasks/:repairTaskId
