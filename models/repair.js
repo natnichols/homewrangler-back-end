@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const repairTaskSchema = new Schema({
   task: {
     type: String,
-    required: true
+    // required: true
   },
   done: {
     type: Boolean,
