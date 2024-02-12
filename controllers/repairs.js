@@ -99,11 +99,16 @@ export async function updateRepairTask(req, res) {
   try {
     const repair = await Repair.findById(req.params.repairId)
     const repairTask = repair.repairTasks.id(req.params.repairTaskId)
-    repairTask.task = req.body.task
-    repairTask.done = req.body.done
-    req.body.done = !!req.body.done
-    await repair.save()
-    res.json(repair)
+    if (repairTask.owner.equals(req.user.profile)) {
+      repairTask.task = req.body.task
+      repairTask.done = req.body.done
+      req.body.done = !!req.body.done
+      await repair.save()
+      res.json(repair)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
+
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
