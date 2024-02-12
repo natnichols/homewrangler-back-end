@@ -19,6 +19,3 @@
 
 *** add REACT + any other necessary badges
 ### [View our Planning Materials on Trello](https://trello.com/b/07MzUQgw/homewrangler%F0%9F%A4%A0 "HomeWrangler Trello Board") 🤠📋
-
-## Ice Box 🧊
-- [ ] Checkbox
