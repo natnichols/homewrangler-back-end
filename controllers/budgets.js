@@ -43,12 +43,17 @@ export async function show(req, res) {
 
 export async function update(req, res) {
   try {
-    const budget = await Budget.findByIdAndUpdate(
-      req.params.budgetId,
-      req.body,
-      { new: true }
-    ).populate('owner')
-    res.json(budget)
+    const budget = await Budget.findById(req.params.budgetId)
+    if (budget.owner.equals(req.user.profile)) {
+      const updatedBudget = await Budget.findByIdAndUpdate(
+        req.params.budgetId,
+        req.body,
+        { new: true }
+      ).populate('owner')
+      res.json(updatedBudget)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
