@@ -45,13 +45,13 @@ export async function update(req, res) {
   try {
     const repair = await Repair.findById(req.params.repairId)
     if (repair.owner.equals(req.user.profile)) {
-      await Repair.findByIdAndUpdate(
+      const updatedRepair = await Repair.findByIdAndUpdate(
         req.params.repairId,
         req.body,
         { new: true }
       ).populate('owner')
       await repair.save()
-      res.json(repair)
+      res.json(updatedRepair)
     } else {
       throw new Error('🛑🤠 Not authorized 😡❌')
     }
