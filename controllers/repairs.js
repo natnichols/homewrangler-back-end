@@ -118,6 +118,7 @@ export async function updateRepairTask(req, res) {
 export async function deleteRepairTask(req, res) {
   try {
     const repair = await Repair.findById(req.params.repairId)
+    const repairTask = repair.repairTasks.id(req.params.repairTaskId)
     if (repairTask.owner.equals(req.user.profile)) {
       repair.repairTasks.remove({ _id: req.params.repairTaskId })
       await repair.save()
