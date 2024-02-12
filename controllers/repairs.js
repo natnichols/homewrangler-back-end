@@ -100,6 +100,8 @@ export async function updateRepairTask(req, res) {
     const repair = await Repair.findById(req.params.repairId)
     const repairTask = repair.repairTasks.id(req.params.repairTaskId)
     repairTask.task = req.body.task
+    repairTask.done = req.body.done
+    req.body.done = !!req.body.done
     await repair.save()
     res.json(repair)
   } catch (err) {
