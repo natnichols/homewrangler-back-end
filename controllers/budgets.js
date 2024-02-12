@@ -43,12 +43,17 @@ export async function show(req, res) {
 
 export async function update(req, res) {
   try {
-    const budget = await Budget.findByIdAndUpdate(
-      req.params.budgetId,
-      req.body,
-      { new: true }
-    ).populate('owner')
-    res.json(budget)
+    const budget = await Budget.findById(req.params.budgetId)
+    if (budget.owner.equals(req.user.profile)) {
+      const updatedBudget = await Budget.findByIdAndUpdate(
+        req.params.budgetId,
+        req.body,
+        { new: true }
+      ).populate('owner')
+      res.json(updatedBudget)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
@@ -57,19 +62,16 @@ export async function update(req, res) {
 
 async function deleteBudget(req, res) {
   try {
-    const budget = await Budget.findByIdAndDelete(req.params.budgetId)
-    res.json(budget)
-    // --- below code throws error - mostly same as above but wanted to add barrier to keep anyone but the owner of the budget from being able to delete it. Also includes commented out line for an icebox feature ---
-    // const budget = await Budget.findById(req.params.budgetId)
-    // if (budget.owner.equals(req.user.profile)) {
-    //   await Budget.findByIdAndDelete(req.params.budgetId)
-    //   const profile = await Profile.findById(req.user.profile)
-    //   // profile.budgets.remove({ _id: req.params.budgetId }) /* <--- icebox */
-    //   await profile.save()
-    //   res.json(budget)
-    // } else {
-    //   throw new Error('🛑🤠 Not authorized 😡❌')
-    // }
+    const budget = await Budget.findById(req.params.budgetId)
+    if (budget.owner.equals(req.user.profile)) {
+      await Budget.findByIdAndDelete(req.params.budgetId)
+      const profile = await Profile.findById(req.user.profile)
+      // profile.budgets.remove({ _id: req.params.budgetId }) /* <--- icebox */
+      await profile.save()
+      res.json(budget)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)

@@ -43,12 +43,17 @@ export async function show(req, res) {
 
 export async function update(req, res) {
   try {
-    const pantryItem = await PantryItem.findByIdAndUpdate(
-      req.params.pantryItemId,
-      req.body,
-      { new: true }
-    ).populate('owner')
-    res.json(pantryItem)
+    const pantryItem = await PantryItem.findById(req.params.pantryItemId)
+    if (pantryItem.owner.equals(req.user.profile)) {
+      const updatedpantryItem = await PantryItem.findByIdAndUpdate(
+        req.params.pantryItemId,
+        req.body,
+        { new: true }
+      ).populate('owner')
+      res.json(updatedpantryItem)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
