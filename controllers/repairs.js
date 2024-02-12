@@ -43,12 +43,18 @@ export async function show(req, res) {
 
 export async function update(req, res) {
   try {
-    const repair = await Repair.findByIdAndUpdate(
-      req.params.repairId,
-      req.body,
-      { new: true }
-    ).populate('owner')
-    res.json(repair)
+    const repair = await Repair.findById(req.params.repairId)
+    if (repair.owner.equals(req.user.profile)) {
+      const updatedRepair = await Repair.findByIdAndUpdate(
+        req.params.repairId,
+        req.body,
+        { new: true }
+      ).populate('owner')
+      await repair.save()
+      res.json(updatedRepair)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
@@ -57,22 +63,16 @@ export async function update(req, res) {
 
 async function deleteRepair(req, res) {
   try {
-    const repair = await Repair.findByIdAndDelete(req.params.repairId)
-    const profile = await Profile.findById(req.user.profile)
-    profile.repairs.remove({ _id: req.params.repairId })
-    await profile.save()
-    res.json(repair)
-    // --- below code throws error - same as above but wanted to add barrier to keep anyone but the owner of the repair from being able to delete it ---
-    // const repair = await Repair.findById(req.params.repairId)
-    // if (repair.owner.equals(req.user.profile)) {
-    //   await Repair.findByIdAndDelete(req.params.repairId)
-    //   const profile = await Profile.findById(req.user.profile)
-    //   profile.repairs.remove({ _id: req.params.repairId })
-    //   await profile.save()
-    //   res.json(repair)
-    // } else {
-    //   throw new Error('🛑🤠 Not authorized 😡❌')
-    // }
+    const repair = await Repair.findById(req.params.repairId)
+    if (repair.owner.equals(req.user.profile)) {
+      await Repair.findByIdAndDelete(req.params.repairId)
+      const profile = await Profile.findById(req.user.profile)
+      profile.repairs.remove({ _id: req.params.repairId })
+      await profile.save()
+      res.json(repair)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
@@ -99,11 +99,16 @@ export async function updateRepairTask(req, res) {
   try {
     const repair = await Repair.findById(req.params.repairId)
     const repairTask = repair.repairTasks.id(req.params.repairTaskId)
-    repairTask.task = req.body.task
-    repairTask.done = req.body.done
-    req.body.done = !!req.body.done
-    await repair.save()
-    res.json(repair)
+    if (repairTask.owner.equals(req.user.profile)) {
+      repairTask.task = req.body.task
+      repairTask.done = req.body.done
+      req.body.done = !!req.body.done
+      await repair.save()
+      res.json(repair)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
+
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
@@ -113,9 +118,14 @@ export async function updateRepairTask(req, res) {
 export async function deleteRepairTask(req, res) {
   try {
     const repair = await Repair.findById(req.params.repairId)
-    repair.repairTasks.remove({ _id: req.params.repairTaskId })
-    await repair.save()
-    res.json(repair)
+    const repairTask = repair.repairTasks.id(req.params.repairTaskId)
+    if (repairTask.owner.equals(req.user.profile)) {
+      repair.repairTasks.remove({ _id: req.params.repairTaskId })
+      await repair.save()
+      res.json(repair)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
