@@ -3,7 +3,7 @@ import { Profile } from "../models/profile.js"
 
 export async function create(req, res) {
   try {
-    req.body.owner = req.user.Profile
+    req.body.owner = req.user.profile
     const repair = await Repair.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
       req.user.profile,
