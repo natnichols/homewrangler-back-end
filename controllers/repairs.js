@@ -43,12 +43,18 @@ export async function show(req, res) {
 
 export async function update(req, res) {
   try {
-    const repair = await Repair.findByIdAndUpdate(
-      req.params.repairId,
-      req.body,
-      { new: true }
-    ).populate('owner')
-    res.json(repair)
+    const repair = await Repair.findById(req.params.repairId)
+    if (repair.owner.equals(req.user.profile)) {
+      await Repair.findByIdAndUpdate(
+        req.params.repairId,
+        req.body,
+        { new: true }
+      ).populate('owner')
+      await repair.save()
+      res.json(repair)
+    } else {
+      throw new Error('🛑🤠 Not authorized 😡❌')
+    }
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
