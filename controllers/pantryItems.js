@@ -78,6 +78,31 @@ async function deletePantryItem(req, res) {
   }
 }
 
+export async function addToShoppingList(req, res) {
+  try {
+    
+    
+  } catch (error) {
+    
+  }
+
+
+  // try {
+  //   req.body.owner = req.user.profile
+  //   const pantryItem = await PantryItem.create(req.body)
+  //   const profile = await Profile.findByIdAndUpdate(
+  //     req.user.profile,
+  //     { $push: { pantryInventory: pantryItem } },
+  //     { new: true }
+  //   )
+  //   pantryItem.owner = profile
+  //   res.json(pantryItem)
+  // } catch (err) {
+  //   console.log(`🚨`, err)
+  //   res.status(500).json(`🚨`, err)
+  // }
+}
+
 export {
   deletePantryItem as delete
 }
