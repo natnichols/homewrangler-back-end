@@ -16,6 +16,6 @@
 ![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)
+<!-- *** add REACT + any other necessary badges -->
 
-*** add REACT + any other necessary badges
 ### [View our Planning Materials on Trello](https://trello.com/b/07MzUQgw/homewrangler%F0%9F%A4%A0 "HomeWrangler Trello Board") 🤠📋
