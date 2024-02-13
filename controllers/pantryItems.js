@@ -80,27 +80,24 @@ async function deletePantryItem(req, res) {
 
 export async function addToShoppingList(req, res) {
   try {
+    // set pantryItem to req.body
+    let pantryItem = await PantryItem.findOne(req.body);
     
-    
+    //this error handling probably unnecessary since we're doing this directly from the item's card
+    if (!pantryItem) {
+      return res.status(404).json({ error: "item not found!" });
+    }
+
+    const profile = await Profile.findByIdAndUpdate(
+      req.user.profile,
+      { $push: { shoppingList: pantryItem._id } },
+      { new: true }
+    );
+    res.json(pantryItem);
   } catch (error) {
-    
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
   }
-
-
-  // try {
-  //   req.body.owner = req.user.profile
-  //   const pantryItem = await PantryItem.create(req.body)
-  //   const profile = await Profile.findByIdAndUpdate(
-  //     req.user.profile,
-  //     { $push: { pantryInventory: pantryItem } },
-  //     { new: true }
-  //   )
-  //   pantryItem.owner = profile
-  //   res.json(pantryItem)
-  // } catch (err) {
-  //   console.log(`🚨`, err)
-  //   res.status(500).json(`🚨`, err)
-  // }
 }
 
 export {
