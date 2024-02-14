@@ -81,11 +81,11 @@ async function deletePantryItem(req, res) {
 
 export async function addToShoppingList(req, res) {
   try {
-    // console.log('test req params ', req.params);
+    console.log('test req params ', req.params);
     const pantryItemId = req.params.pantryItemId
-    // console.log('test req body w pantryitemId', pantryItemId);
+    console.log('test pantryitemId variable', pantryItemId);
     // console.log('test for profile? ', req.body.profile);
-    // console.log('test for profile id? ', req.body.profile);
+    // console.log('test for profile id? ', req.body.profileId);
 
     const updatedProfile = await Profile.findByIdAndUpdate(
       // sending profile in URL for Postman testing!
