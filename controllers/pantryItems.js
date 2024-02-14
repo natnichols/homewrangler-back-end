@@ -78,25 +78,24 @@ async function deletePantryItem(req, res) {
   }
 }
 
+
 export async function addToShoppingList(req, res) {
   try {
-    // set variable to contain PantryItem's id
-    const pantryItemId = req.body.pantryItemId;
+    // console.log('test req params ', req.params);
+    const pantryItemId = req.params.pantryItemId
+    // console.log('test req body w pantryitemId', pantryItemId);
+    // console.log('test for profile? ', req.body.profile);
+    // console.log('test for profile id? ', req.body.profile);
 
-    // find the item by its ID
-    const pantryItem = await PantryItem.findById(pantryItemId);
-    
-    //this error handling probably unnecessary since we're doing this directly from the item's card
-    if (!pantryItem) {
-      return res.status(404).json({ error: "item not found!" });
-    }
-
-    const profile = await Profile.findByIdAndUpdate(
+    const updatedProfile = await Profile.findByIdAndUpdate(
+      // sending profile in URL for Postman testing!
+      // req.params.profileId,
+      // After UI, will have to change to this: 
       req.user.profile,
-      { $push: { shoppingList: pantryItem._id } },
+      { $push: { shoppingList: pantryItemId } },
       { new: true }
     );
-    res.json(pantryItem);
+    res.json(updatedProfile);
   } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
@@ -105,12 +104,26 @@ export async function addToShoppingList(req, res) {
 
 export async function delFromShoppingList(req,res) {
   try {
-    
-  } catch (error) {
-    
+    // console.log('test req params ', req.params);
+    const pantryItemId = req.params.pantryItemId
+    // console.log('test req body w pantryitemId', pantryItemId);
+    // console.log('test for profile? ', req.body.profile);
+    // console.log('test for profile id? ', req.body.profile);
+
+    const updatedProfile = await Profile.findByIdAndUpdate(
+      // sending profile in URL for Postman testing!
+      // req.params.profileId,
+      // After UI, will have to change to this: 
+      req.user.profile,
+      { $pull: { shoppingList: pantryItemId } },
+      { new: true }
+    );
+    res.json(updatedProfile);
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
   }
 }
-
 
 export {
   deletePantryItem as delete

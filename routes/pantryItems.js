@@ -21,11 +21,22 @@ router.put('/:pantryItemId', checkAuth, pantryItemsCtrl.update)
 router.delete('/:pantryItemId', checkAuth, pantryItemsCtrl.delete)
 
 
-// POST to localhost:3001/api/pantryItems
-// router.post('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.addToShoppingList)
-// POST to localhost:3001/api/pantryItems
-router.post('/shoppingList', pantryItemsCtrl.addToShoppingList)
-// POST to localhost:3001/api/pantryItems
+
+
+//POSTMAN TESTING
+// POST to localhost:3001/api/pantryItems/shoppingList/:pantryItemId/:profileId
+// router.post('/shoppingList/:pantryItemId/:profileId',  pantryItemsCtrl.addToShoppingList)
+
+// ACTUAL UI USAGE
+// POST to localhost:3001/api/pantryItems/shoppingList/:pantryItemId
+router.post('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.addToShoppingList)
+
+//POSTMAN TESTING
+// POST to localhost:3001/api/pantryItems/shoppingList/:pantryItemId/
+// router.delete('/shoppingList/:pantryItemId/:profileId', pantryItemsCtrl.delFromShoppingList)
+
+// ACTUAL UI USAGE
+// POST to localhost:3001/api/pantryItems/shoppingList/:pantryItemId/
 router.delete('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.delFromShoppingList)
 
 
