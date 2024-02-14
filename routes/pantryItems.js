@@ -29,7 +29,8 @@ router.delete('/:pantryItemId', checkAuth, pantryItemsCtrl.delete)
 
 // ACTUAL UI USAGE
 // POST to localhost:3001/api/pantryItems/shoppingList/:pantryItemId
-router.post('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.addToShoppingList)
+// router.post('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.addToShoppingList)
+router.post('/shoppingList/add/:pantryItemId', checkAuth, pantryItemsCtrl.addToShoppingList)
 
 //POSTMAN TESTING
 // POST to localhost:3001/api/pantryItems/shoppingList/:pantryItemId/
@@ -37,7 +38,8 @@ router.post('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.addToShopp
 
 // ACTUAL UI USAGE
 // POST to localhost:3001/api/pantryItems/shoppingList/:pantryItemId/
-router.delete('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.delFromShoppingList)
+// router.delete('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.delFromShoppingList)
+router.delete('/shoppingList/remove/:pantryItemId', checkAuth, pantryItemsCtrl.delFromShoppingList)
 
 
 export {
