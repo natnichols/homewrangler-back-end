@@ -78,6 +78,53 @@ async function deletePantryItem(req, res) {
   }
 }
 
+
+export async function addToShoppingList(req, res) {
+  try {
+    // console.log('test req params ', req.params);
+    const pantryItemId = req.params.pantryItemId
+    // console.log('test req body w pantryitemId', pantryItemId);
+    // console.log('test for profile? ', req.body.profile);
+    // console.log('test for profile id? ', req.body.profile);
+
+    const updatedProfile = await Profile.findByIdAndUpdate(
+      // sending profile in URL for Postman testing!
+      // req.params.profileId,
+      // After UI, will have to change to this: 
+      req.user.profile,
+      { $push: { shoppingList: pantryItemId } },
+      { new: true }
+    );
+    res.json(updatedProfile);
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
+
+export async function delFromShoppingList(req,res) {
+  try {
+    // console.log('test req params ', req.params);
+    const pantryItemId = req.params.pantryItemId
+    // console.log('test req body w pantryitemId', pantryItemId);
+    // console.log('test for profile? ', req.body.profile);
+    // console.log('test for profile id? ', req.body.profile);
+
+    const updatedProfile = await Profile.findByIdAndUpdate(
+      // sending profile in URL for Postman testing!
+      // req.params.profileId,
+      // After UI, will have to change to this: 
+      req.user.profile,
+      { $pull: { shoppingList: pantryItemId } },
+      { new: true }
+    );
+    res.json(updatedProfile);
+  } catch (err) {
+    console.log(`🚨`, err)
+    res.status(500).json(`🚨`, err)
+  }
+}
+
 export {
   deletePantryItem as delete
 }
