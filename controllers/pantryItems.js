@@ -80,8 +80,11 @@ async function deletePantryItem(req, res) {
 
 export async function addToShoppingList(req, res) {
   try {
-    // set pantryItem to req.body
-    let pantryItem = await PantryItem.findOne(req.body);
+    // set variable to contain PantryItem's id
+    const pantryItemId = req.body.pantryItemId;
+
+    // find the item by its ID
+    const pantryItem = await PantryItem.findById(pantryItemId);
     
     //this error handling probably unnecessary since we're doing this directly from the item's card
     if (!pantryItem) {
@@ -94,11 +97,20 @@ export async function addToShoppingList(req, res) {
       { new: true }
     );
     res.json(pantryItem);
-  } catch (error) {
+  } catch (err) {
     console.log(`🚨`, err)
     res.status(500).json(`🚨`, err)
   }
 }
+
+export async function delFromShoppingList(req,res) {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
+
 
 export {
   deletePantryItem as delete

@@ -20,8 +20,14 @@ router.put('/:pantryItemId', checkAuth, pantryItemsCtrl.update)
 // DELETE to localhost:3001/api/pantryItems/:pantryItemId
 router.delete('/:pantryItemId', checkAuth, pantryItemsCtrl.delete)
 
+
 // POST to localhost:3001/api/pantryItems
-router.post('/', checkAuth, pantryItemsCtrl.addToShoppingList)
+// router.post('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.addToShoppingList)
+// POST to localhost:3001/api/pantryItems
+router.post('/shoppingList', pantryItemsCtrl.addToShoppingList)
+// POST to localhost:3001/api/pantryItems
+router.delete('/shoppingList/:pantryItemId', checkAuth, pantryItemsCtrl.delFromShoppingList)
+
 
 export {
   router
