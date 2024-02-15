@@ -38,14 +38,14 @@ const repairSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Profile'
   },
+  cost: {
+    type: Number,
+    // required: true
+  },
   // --------- icebox ---------
   // supplies: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'PantryItem'
-  // },
-  // cost: {
-  //   type: Number,
-  //   required: true
   // },
   // --------- icebox ---------
 }, {
