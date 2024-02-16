@@ -1,6 +1,6 @@
 # 🤠 HomeWrangler 🏡
 
-## Please check out [homewrangler-front-end](https://github.com/natnichols/homewrangler-front-end "homewrangler-front-end GitHub Repo") to view the Front-End Repository for HomeWrangler!
+## Howdy, pardner! Check out [homewrangler-front-end](https://github.com/natnichols/homewrangler-front-end "homewrangler-front-end GitHub Repo") to view the Front-End Repository for HomeWrangler
 
 ![Placeholder for Logo OR Screenshot of Landing page](/assets/hw-logo-border-white.png)
 
