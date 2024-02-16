@@ -1,4 +1,7 @@
-# local notes
-znotes.txt
-
+/.git
+/node_modules
+.dockerignore
 .env
+Dockerfile
+fly.toml
+znotes.txt
