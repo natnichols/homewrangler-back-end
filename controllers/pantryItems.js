@@ -1,5 +1,5 @@
-import { PantryItem } from "../models/pantryItem.js"
-import { Profile } from "../models/profile.js"
+import { PantryItem } from '../models/pantryItem.js'
+import { Profile } from '../models/profile.js'
 
 export async function create(req, res) {
   try {
