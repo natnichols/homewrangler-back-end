@@ -2,7 +2,7 @@
 
 ## Please check out [homewrangler-front-end](https://github.com/natnichols/homewrangler-front-end "homewrangler-front-end GitHub Repo") to view the Front-End Repository for HomeWrangler!
 
-![Placeholder for Logo OR Screenshot of Landing page](/assets/cowboy-hat-tp-bg-large.png)
+![Placeholder for Logo OR Screenshot of Landing page](/assets/hw-logo-border-white.png)
 
 ## Attributions 🎉
 * **Decoupled MERN Stack with JWT Auth Template** is from [GA's SEI Github (Private Repository)](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-back-end "SEI-Remote Decoupled MERN Stack with JWT Auth Template - Back End GitHub Repo")
