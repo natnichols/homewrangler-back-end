@@ -9,8 +9,6 @@ const repairTaskSchema = new Schema({
   },
   done: {
     type: Boolean,
-    // default: false,
-    // required: true
   },
   owner: {
     type: Schema.Types.ObjectId,
@@ -40,7 +38,6 @@ const repairSchema = new Schema({
   },
   cost: {
     type: Number,
-    // required: true
   },
   // --------- icebox ---------
   // supplies: {
